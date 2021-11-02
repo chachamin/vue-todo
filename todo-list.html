@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDN 방식으로 vue.js 사용하기</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://kit.fontawesome.com/9a1ca0d9e5.js" crossorigin="anonymous"></script>
+    
+
+</head>
+<body>
+    <h1>vue.js 시작하기</h1>
+    <h2>vue.js CDN을 이용하기</h2>
+    <h3>오늘의 할일 (todo-app)</h3>
+    <div id="app">
+        <div id="forms">
+            <input type="text" v-model="inputTodo">
+            <button v-on:click="addTodo">추가</button>
+        </div>
+        <ol type="A">
+            <li v-for="todo in todos" v-key="todo.idx">
+                {{ todo.text }} <span v-on:click="delTodo"><i class="fas fa-trash-alt"></i></span>
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        var app4 = new Vue({
+            el: "#app",
+            methods:{
+                addTodo: function(){
+                    app4.todos.push({ text: this.inputTodo })
+                    this.clearTodo();
+                },
+                clearTodo: function(){
+                    this.inputTodo = '';
+                },
+                delTodo: function(){
+                    var choice = confim("정말로 삭제 하시겠습니까?");
+                    if (choice) {
+                        consol.log("삭제되었습니다.");
+                    } else {
+                        consol.log("놉!");
+                    }
+                }
+            },
+            data:{
+                inputTodo:'',
+                todos: [
+                    { text: '포트폴리오 만들기' },
+                    { text: '오류수정하기' },
+                    { text: '친구와 만나서 밥먹기' }
+                ]
+            }
+        })
+    </script>
+    
+</body>
+</html>
